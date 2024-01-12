@@ -2,3 +2,5 @@ redis-analyzer
 *.rdb
 *.aof
 test*
+.idea
+log

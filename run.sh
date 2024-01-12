@@ -1,0 +1,1 @@
+redis-analyzer parse-aof --aof-file ./data/appendonly_control_157.aof >> ./out/appendonly_control_157.aof.out

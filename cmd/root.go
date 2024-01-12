@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/lanfang/go-lib/log"
+	"github.com/lanfang/redis-analyzer/common"
 	"github.com/lanfang/redis-analyzer/config"
 	"github.com/spf13/cobra"
 	"os"
@@ -140,7 +141,11 @@ var rootCmd = &cobra.Command{
 	Use:     "redis-analyzer",
 	Version: "0.0.1",
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
-		log.Gen(config.SERVERNAME, config.G_Config.LogFile)
+		fmt.Printf("%+v, %+v\n", config.SERVERNAME, config.G_Config)
+		fmt.Printf("%+v, %+v\n", config.SERVERNAME, common.GetBasePath(config.G_Config.AofFile))
+		config.G_Config.LogFile = "aof.log"
+		dirName := common.GetBasePath(config.G_Config.AofFile) + "/../log/"
+		log.Gen(config.SERVERNAME, dirName, config.G_Config.LogFile)
 		return nil
 	},
 }
